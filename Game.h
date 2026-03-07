@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "Character.h"
+#include "Level.h"
 
 using namespace std;
 
@@ -8,9 +8,9 @@ class Game{
     public:
     Character characters[5];
     int characterCount;
-    // Weapon weapons[5];
     Character myCharacter;
     int currentLevel;
+    Level levels[5]; // Added the levels, (5) for now
 
     Game();
 
