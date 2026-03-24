@@ -5,7 +5,7 @@
 Game::Game(){
     characterCount = 1;
 
-    characters[0] = Wizard("Mousa");
+    characters[0] = new Wizard("Mousa");
 
     currentLevel = 0;
 }
@@ -22,7 +22,7 @@ void Game::MainMenu(){
         int i = 0;
         for(; i < characterCount; i++){
             cout << i << " ";
-            characters[i].print();
+            characters[i]->print();
         }
         cout << i << " Create a new character" << endl;
 
@@ -46,16 +46,16 @@ void Game::MainMenu(){
             while(selectedType > 2 || selectedType < 0){
                 cout << "Enter the type: "; cin >>selectedType;
             }
-            Character newChar;
+            Character *newChar;
             switch (selectedType) {
                 case 0:
-                newChar = Warrior(name);
+                newChar = new Warrior(name);
                 break;
                 case 1:
-                newChar = Archer(name);
+                newChar = new Archer(name);
                 break;
                 case 2:
-                newChar = Wizard(name);
+                newChar = new Wizard(name);
                 break;
                 default:
                 break;
@@ -66,7 +66,7 @@ void Game::MainMenu(){
 
 
         }else{
-            cout << "You are playing as "<<  characters[input].name << endl;
+            cout << "You are playing as "<<  characters[input]->name << endl;
             myCharacter = characters[input];
 
             NextLevel();
@@ -81,7 +81,7 @@ void Game::NextLevel(){
     while(won){
     currentLevel++;
 
-    Level newLevel = Level(currentLevel, &myCharacter);
+    Level newLevel = Level(currentLevel, myCharacter);
 
     won = newLevel.start();
     }

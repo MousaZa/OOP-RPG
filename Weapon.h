@@ -17,3 +17,18 @@ class Weapon{
     bool attack(Enemy*);
     void print();
 };
+
+class Bow : public Weapon{
+    public:
+    Bow();
+};
+
+class Sword : public Weapon{
+    public:
+    Sword();
+};
+
+class Wand : public Weapon{
+    public:
+    Wand();
+};

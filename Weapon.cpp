@@ -10,21 +10,6 @@ Weapon::Weapon(string type){
     string names[10] = {"Poison", "Diamond", "Netherite", "Iron", "Fire", "Aqua", "Ice", "Forest", "Dark", "Magic"};
     int randomIndex = rand() % 10;
     name = "The " + names[randomIndex] + " " + type;
-
-    if(type == "Sword"){
-        // dmg 3-7 dur 4-10
-        damage = (rand() % 5) + 3;
-        durability = (rand() % 7) + 4;
-    }else if(type == "Wand"){
-        // dmg 1-3 dur 2-8
-        damage = (rand() % 3) + 1;
-        durability = (rand() % 6) + 2;
-    }else if (type == "Bow"){
-        // dmg 2-5 dur 2-8
-        damage = (rand() % 4) + 2;
-        durability = (rand() % 6) + 2;
-    }
-
 }
 
 void Weapon::print(){
@@ -34,12 +19,14 @@ void Weapon::print(){
 
 // Returns true if attacked and false if broken!
 bool Weapon::attack(Enemy* enemy){
-    if (durability <= 0){
+    if (durability <= 1){
+        durability--;
+        enemy->takeDamage(damage);
         cout << "Broken" << endl;
         return false;
     }else{
-    durability--;
-   enemy->takeDamage(damage);
-   return true;
+        durability--;
+        enemy->takeDamage(damage);
+        return true;
     }
 }

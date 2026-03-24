@@ -4,5 +4,9 @@ Wizard::Wizard(string n) : Character(n, "Wizard"){
     hp = 5;
     full_hp = 5;
     power = 4;
-    weapon = Weapon("Wand");
+    weapon = Wand();
+}
+
+void Wizard::generate_weapon(){
+    weapon = Wand();
 }

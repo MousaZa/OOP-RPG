@@ -49,7 +49,12 @@ void Character::heal(int heal){
 // Returns true if able to attack, else return flase
 bool Character::attack(Enemy* enemy){
     xp += 100;
-    return weapon.attack(enemy);
+    if (weapon.attack(enemy)){
+        return true;
+    }else{
+        generate_weapon();
+        return true;
+    }
 }
 
 int Character::get_level(){

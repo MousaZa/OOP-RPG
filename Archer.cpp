@@ -4,5 +4,9 @@ Archer::Archer(string n) : Character(n, "Archer"){
     hp = 7;
     full_hp = 7;
     power = 3;
-    weapon = Weapon("Bow");
+    weapon = Bow();
+}
+
+void Archer::generate_weapon(){
+    weapon = Bow();
 }

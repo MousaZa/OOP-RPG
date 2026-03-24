@@ -22,11 +22,15 @@ class Character{
 
     Character();
 
+    virtual ~Character() = default;
+
     void takeDamage(int);
     void heal(int);
     bool attack(Enemy*);
 
     void print_hp();
+
+    virtual void generate_weapon() = 0;
 
     void print();
     void print_with_weapon();
@@ -37,14 +41,17 @@ class Character{
 class Wizard : public Character{
     public:
     Wizard(string);
+    void generate_weapon() override;
 };
 
 class Archer : public Character{
     public:
     Archer(string);
+    void generate_weapon() override;
 };
 
 class Warrior : public Character{
     public:
     Warrior(string);
+    void generate_weapon() override;
 };
