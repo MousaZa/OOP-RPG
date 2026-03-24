@@ -5,7 +5,7 @@ using namespace std;
 
 class Character{
     private:
-    int xp;
+    
 
     protected:
     int full_hp;
@@ -15,7 +15,9 @@ class Character{
     int hp;
     int power;
     string type;
-    Weapon weapon;
+    Weapon* weapon; 
+    int xp;
+    
 
     // constructor
     Character(string , string );
@@ -30,7 +32,9 @@ class Character{
 
     void print();
     void print_with_weapon();
-
+    public: 
+    
+    void repair_weapon(int repair_cost, int repair_amount);// since the repair function needs to access the xp i wrote it in the charactrer class
     int get_level();
 };
 

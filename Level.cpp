@@ -15,7 +15,7 @@ Level::Level(int number, Character* c): levelNumber(number), character(c){
 
 bool Level::start(){ // Starting the level here
     while(true){
-    system("clear");
+    system("cls");
     character->print_with_weapon();
 
     cout << "------Enemies-------" << endl;

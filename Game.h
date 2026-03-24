@@ -6,9 +6,9 @@ using namespace std;
 
 class Game{
     public:
-    Character characters[5];
+    Character* characters[5];
     int characterCount;
-    Character myCharacter;
+    Character* myCharacter;
     int currentLevel;
     Level levels[5]; // Added the levels, (5) for now
 

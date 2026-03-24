@@ -5,8 +5,7 @@
 Game::Game(){
     characterCount = 1;
 
-    characters[0] = Wizard("Mousa");
-
+    characters[0] = new Wizard("Mousa");
     currentLevel = 0;
 }
 
@@ -15,19 +14,17 @@ void Game::Start(){
 }
 
 void Game::MainMenu(){
-
     while(true){
 
-        system("clear");
+        system("cls");
         int i = 0;
         for(; i < characterCount; i++){
             cout << i << " ";
-            characters[i].print();
+            characters[i]->print();
         }
         cout << i << " Create a new character" << endl;
 
         int input = -1;
-
         while (input > i || input < 0) {
             cout << "Please choose a character: "; cin >> input;
         }
@@ -35,7 +32,6 @@ void Game::MainMenu(){
         if(input == i){
             string name;
             int selectedType = -1;
-
             string types[3] = {"Warrior", "Archer", "Wizard"};
 
             cout << "Enter the name: "; cin >>name;
@@ -46,44 +42,41 @@ void Game::MainMenu(){
             while(selectedType > 2 || selectedType < 0){
                 cout << "Enter the type: "; cin >>selectedType;
             }
-            Character newChar;
+        
             switch (selectedType) {
                 case 0:
-                newChar = Warrior(name);
-                break;
+                    characters[characterCount] = new Warrior(name);
+                    break;
                 case 1:
-                newChar = Archer(name);
-                break;
+                    characters[characterCount] = new Archer(name);
+                    break;
                 case 2:
-                newChar = Wizard(name);
-                break;
+                    characters[characterCount] = new Wizard(name);
+                    break;
                 default:
-                break;
+                    break;
             }
-            characters[characterCount] = newChar;
             characterCount++;
 
 
-
         }else{
-            cout << "You are playing as "<<  characters[input].name << endl;
+            //my character is now a pointer pointing to the selected characetr
             myCharacter = characters[input];
-
+            cout << "You are playing as "<<  characters[input]->name << endl;
+            
             NextLevel();
             break;
         }
-
     }
 }
 
 void Game::NextLevel(){
     bool won = true;
     while(won){
-    currentLevel++;
+        currentLevel++;
 
-    Level newLevel = Level(currentLevel, &myCharacter);
-
-    won = newLevel.start();
+        Level newLevel = Level(currentLevel, myCharacter);
+        won = newLevel.start();
     }
     cout << "Game Over!" << endl;
 }
