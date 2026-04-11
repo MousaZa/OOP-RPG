@@ -17,26 +17,28 @@ class Weapon{
     Weapon();
     Weapon(string);
 
-    bool attack(Enemy*);
+    virtual ~Weapon() = default;
+
+    virtual string attack(Enemy*) = 0;
     void print();
     void repair(int);
-    
+
 };
 
 class Bow : public Weapon{
 public:
     int arrows; // something that only bows have
     int max_arrows = 15;
-    
+
     Bow();
-    bool attack(Enemy* enemy); // the bow has a different way of attacking (boolean because you either can attack or cannot attack)
-    void reload(int amount);     
+    string attack(Enemy* enemy) override; // the bow has a different way of attacking (boolean because you either can attack or cannot attack)
+    void reload(int amount);
 };
 
 class Wand : public Weapon{
     public:
     Wand();
-    bool attack(Enemy* enemy);    // damage just 1 enemy
+    string attack(Enemy* enemy) override;    // damage just 1 enemy
     void double_attack(Enemy* enemy);      // damage more than 1 enemy at the same time
 };
 
@@ -45,6 +47,6 @@ class Sword: public Weapon{
     //int cool_down = 1;    // the time gap between each sword hit??
 
     Sword();
-    bool attack(Enemy* enemy) ;
+    string attack(Enemy* enemy) override;
     void defence(Enemy* enemy);
 };

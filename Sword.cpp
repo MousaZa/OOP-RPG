@@ -11,8 +11,28 @@ Sword::Sword() : Weapon("Sword"){
 void Sword::defence(Enemy* enemy){}
 
 
-bool Sword::attack(Enemy* enemy){
-    return Weapon::attack(enemy);
+string Sword::attack(Enemy* enemy){
+    if(durability == 1){
+        durability--;
+                enemy->takeDamage(damage);
+        return "Warning";
+    }
+    if (durability <= 0) {
+        cout << name << " Broke!" << endl;
+        return "Broken";
+    }
+
+    // |\
+    // | \
+    // |--+--->
+    // | /
+    // |/
+    // ====<o>
+    // =|======>
+    //
+    //
+
+    durability--;
+    enemy->takeDamage(damage);
+    return "Done";
 }
-
-

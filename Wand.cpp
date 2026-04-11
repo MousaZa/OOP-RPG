@@ -13,6 +13,18 @@ Wand::Wand() : Weapon("Wand"){
 
 void Wand::double_attack(Enemy* enemy){}
 
-bool Wand::attack(Enemy* enemy){
-   return Weapon::attack(enemy);
+string Wand::attack(Enemy* enemy){
+    if(durability == 1){
+        durability--;
+                enemy->takeDamage(damage);
+        return "Warning";
+    }
+    if (durability <= 0) {
+        cout << name << " Broke!" << endl;
+        return "Broken";
+    }
+
+    durability--;
+    enemy->takeDamage(damage);
+    return "Done";
 }

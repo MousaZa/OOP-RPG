@@ -38,38 +38,3 @@ void Weapon::print(){
     cout << name << " repaired! New Durability: " << durability << endl;
 }
     */
-
-
-
-
-// Returns true if attacked and false if broken!
-bool Weapon::attack(Enemy* enemy){
-    if(durability == 1){
-        cout << "WARNING: " << name << " is about to break!" << endl;
-        cout << "Do you want to repair " << name << "(y/n)? : ";
-
-        char choice;
-        cin >> choice;
-        if (choice == 'y') {
-            cout << "How much do you want to repair it?: " ;
-            int amount;
-            cin >> amount;
-            durability += amount;
-            cout << "Repaired! Durability is now: " << durability << endl;
-        }
-        
-    }
-   if (durability <= 0) {   
-        cout << name << " Broke!" << endl;
-        return false;
-    } 
-
-    durability--;
-    enemy->takeDamage(damage); 
-    return true; 
-}
-
-
-
-
-
