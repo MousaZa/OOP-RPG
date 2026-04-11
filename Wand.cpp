@@ -1,6 +1,7 @@
 #include "Weapon.h"
 
 Wand::Wand() : Weapon("Wand"){
+<<<<<<< HEAD
 
    repair_cost=40; // you need 40 xp to increase durability by 10
 }
@@ -27,4 +28,9 @@ string Wand::attack(Enemy* enemy){
     durability--;
     enemy->takeDamage(damage);
     return "Done";
+=======
+    // dmg 1-3 dur 2-8
+    damage = (rand() % 3) + 1;
+    durability = (rand() % 6) + 2;
+>>>>>>> origin/generate
 }

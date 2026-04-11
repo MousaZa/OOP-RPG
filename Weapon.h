@@ -50,3 +50,18 @@ class Sword: public Weapon{
     string attack(Enemy* enemy) override;
     void defence(Enemy* enemy);
 };
+
+class Bow : public Weapon{
+    public:
+    Bow();
+};
+
+class Sword : public Weapon{
+    public:
+    Sword();
+};
+
+class Wand : public Weapon{
+    public:
+    Wand();
+};
