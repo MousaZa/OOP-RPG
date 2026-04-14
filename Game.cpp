@@ -29,9 +29,10 @@ void Game::MainMenu(){
         cout << i << " Create a new character" << endl;
 
         int input = -1;
-        while (input > i || input < 0) {
-            cout << "Please choose a character: "; cin >> input;
-        }
+        cout << "Please choose a character: "; cin >> input;
+            while (input > i || input < 0) {
+                cout << "Invalid.. Please choose a character: "; cin >> input;
+            }
 
         if(input == i){
             string name;
@@ -67,7 +68,10 @@ void Game::MainMenu(){
             //my character is now a pointer pointing to the selected characetr
             myCharacter = characters[input];
             cout << "You are playing as "<<  characters[input]->name << endl;
-
+            cout << "Press Enter to start the game!";
+            cin.ignore();
+            cin.get();
+            
             NextLevel();
             break;
         }
@@ -102,5 +106,7 @@ void Game::NextLevel(){
         won = newLevel.start();
     }
     system("rm save.txt");
-    cout << "Game Over!" << endl;
+    cout << "------- GAME OVER -------" << endl;
+    cout << endl;
+    cout << "Press Enter to return to main menu...";
 }
