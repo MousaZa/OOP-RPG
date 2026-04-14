@@ -1,3 +1,6 @@
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
 #include <iostream>
 
 #include "Game.h"
@@ -17,7 +20,7 @@ void Game::Start(){
 void Game::MainMenu(){
     while(true){
 
-        system("cls");
+        system("clear");
         int i = 0;
         for(; i < characterCount; i++){
             cout << i << " ";
@@ -64,7 +67,7 @@ void Game::MainMenu(){
             //my character is now a pointer pointing to the selected characetr
             myCharacter = characters[input];
             cout << "You are playing as "<<  characters[input]->name << endl;
-            
+
             NextLevel();
             break;
         }
@@ -74,10 +77,30 @@ void Game::MainMenu(){
 void Game::NextLevel(){
     bool won = true;
     while(won){
+        // --------
+
+        ofstream File("save.txt");
+        // Mousa,Wizard,5,200,The Dark Wand,100,100,2
+
+        if(File.is_open()){
+        File << myCharacter->name << ",";
+        File << myCharacter->type << ",";
+        File << myCharacter->hp << ",";
+        File << myCharacter->xp << ",";
+        File << myCharacter->weapon->name << ",";
+        File << myCharacter->weapon->damage << ",";
+        File << myCharacter->weapon->durability << ",";
+        File << currentLevel << "\n";
+        }
+
+        File.close();
+
+        // --------
         currentLevel++;
 
         Level newLevel = Level(currentLevel, myCharacter);
         won = newLevel.start();
     }
+    system("rm save.txt");
     cout << "Game Over!" << endl;
 }

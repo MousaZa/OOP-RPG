@@ -1,6 +1,8 @@
 #include "Weapon.h"
 
 Bow::Bow() : Weapon("Bow"){
+    damage = (rand() % 4) + 2;
+    durability = (rand() % 6) + 2;
 }
 
 
