@@ -28,17 +28,18 @@ void Character::print_with_weapon(){
     cout << "HP  : "; print_hp(); cout << endl;
     cout << "PWR : " << power << endl;
     cout<< "XP: " << xp << endl;
-    cout << "----- Weapon ------" << endl;
+    cout << "------ Weapon -------" << endl;
 
     weapon->print();   //because we changed it to a pointer
 }
 
 void Character::takeDamage(int damage){
-    if (hp - damage  <= 0) {
-        cout << "YOU ARE DEAD!" << endl;
-        exit(1);
-    }
     hp -= damage;
+    if (hp <= 0) {
+        hp =0;
+        cout << "\n------YOU ARE DEAD!-------" << endl;
+        //exit(1);
+    }
 }
 
 void Character::heal(int heal){
@@ -60,8 +61,8 @@ bool Character::attack(Enemy* enemy){
     }else if(feedback == "Broken"){
         return false;
     }else if (feedback == "Warning"){
-        cout << "WARNING: " << name << " is about to break!" << endl;
-        cout << "Do you want to repair " << name << "(y/n)? : ";
+        cout << "WARNING: " << weapon->name << " is about to break!" << endl;
+        cout << "Do you want to repair " << weapon->name << "(y/n)? : ";
 
         char choice;
         cin >> choice;
@@ -77,7 +78,8 @@ bool Character::attack(Enemy* enemy){
             }
             weapon->durability += amount;
             xp -= XP_COST * amount;
-            cout << "Repaired! Durability is now: " << weapon->durability << endl;
+            cout << "-------------------------" << endl;
+            cout << weapon->name << " is repaired! Durability is now: " << weapon->durability << endl;
         }
 
         xp += 100;
